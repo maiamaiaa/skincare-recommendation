@@ -1,6 +1,6 @@
 """
-Utility functions untuk Skincare Recommendation App
-Helper functions untuk logging, debugging, dan utility lainnya
+Utility functions for Skincare Recommendation App
+Helper functions for logging, debugging, and other utilities
 """
 
 import logging
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def log_function_call(func):
-    """Decorator untuk log fungsi yang dipanggil"""
+    """Decorator to log called functions"""
     @wraps(func)
     def wrapper(*args, **kwargs):
         logger.info(f"Calling function: {func.__name__}")
@@ -36,7 +36,7 @@ def log_function_call(func):
 
 
 def time_execution(func):
-    """Decorator untuk mengukur waktu eksekusi"""
+    """Decorator to measure execution time"""
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -48,73 +48,73 @@ def time_execution(func):
 
 
 def format_percentage(value, decimal_places=1):
-    """Format nilai menjadi persentase"""
+    """Format value as percentage"""
     return f"{value * 100:.{decimal_places}f}%"
 
 
 def get_similarity_emoji(score):
-    """Dapatkan emoji berdasarkan similarity score"""
+    """Get emoji based on similarity score"""
     if score >= 0.8:
-        return "🟢"  # Green - Sangat cocok
+        return "🟢"  # Green - Very suitable
     elif score >= 0.6:
-        return "🟡"  # Yellow - Cocok
+        return "🟡"  # Yellow - Suitable
     elif score >= 0.4:
-        return "🟠"  # Orange - Cukup cocok
+        return "🟠"  # Orange - Fairly suitable
     else:
-        return "🔴"  # Red - Kurang cocok
+        return "🔴"  # Red - Less suitable
 
 
 def get_recommendation_message(score):
-    """Dapatkan pesan rekomendasi berdasarkan score"""
+    """Get recommendation message based on score"""
     if score >= 0.85:
-        return "Sangat cocok untuk kebutuhan Anda!"
+        return "Perfect match for your needs!"
     elif score >= 0.70:
-        return "Cocok untuk kebutuhan Anda"
+        return "Great match for your needs"
     elif score >= 0.50:
-        return "Cukup cocok dengan kebutuhan Anda"
+        return "Fairly suitable for your needs"
     else:
-        return "Mungkin cocok dengan kebutuhan Anda"
+        return "May suit your needs"
 
 
 def validate_text_input(text, min_length=3, max_length=500):
     """
-    Validasi input teks dari user
+    Validate user text input
     
     Args:
-        text (str): Teks yang akan divalidasi
-        min_length (int): Minimal panjang teks
-        max_length (int): Maksimal panjang teks
+        text (str): Text to validate
+        min_length (int): Minimum text length
+        max_length (int): Maximum text length
         
     Returns:
         tuple: (is_valid, error_message)
     """
     if not text:
-        return False, "Input tidak boleh kosong"
+        return False, "Input cannot be empty"
     
     text = text.strip()
     
     if len(text) < min_length:
-        return False, f"Input minimal {min_length} karakter"
+        return False, f"Input must be at least {min_length} characters"
     
     if len(text) > max_length:
-        return False, f"Input maksimal {max_length} karakter"
+        return False, f"Input cannot exceed {max_length} characters"
     
     return True, ""
 
 
 def display_product_card_enhanced(product_name, similarity_score, description, rank, show_emoji=True):
     """
-    Display product card dengan styling
+    Display product card with styling
     
     Args:
-        product_name (str): Nama produk
-        similarity_score (float): Score similarity (0-1)
-        description (str): Deskripsi produk
-        rank (int): Ranking produk
-        show_emoji (bool): Apakah menampilkan emoji
+        product_name (str): Product name
+        similarity_score (float): Similarity score (0-1)
+        description (str): Product description
+        rank (int): Product ranking
+        show_emoji (bool): Whether to show emoji
     
     Returns:
-        str: HTML string untuk ditampilkan
+        str: HTML string to display
     """
     emoji = get_similarity_emoji(similarity_score) if show_emoji else ""
     percentage = format_percentage(similarity_score)
@@ -124,12 +124,12 @@ def display_product_card_enhanced(product_name, similarity_score, description, r
     <div class="product-card">
         <div class="product-name">{emoji} #{rank} {product_name}</div>
         <div class="similarity-score">
-            🎯 Kecocokan: {percentage}
+            🎯 Match: {percentage}
         </div>
         <div class="score-bar" style="width: {bar_width}%"></div>
         <div class="product-description">
             {get_recommendation_message(similarity_score)}<br>
-            <strong>Detail:</strong> {description}
+            <strong>Details:</strong> {description}
         </div>
     </div>
     """
@@ -138,13 +138,13 @@ def display_product_card_enhanced(product_name, similarity_score, description, r
 
 def get_stats_summary(recommendations_df):
     """
-    Dapatkan summary statistics dari recommendations
+    Get summary statistics from recommendations
     
     Args:
-        recommendations_df (pd.DataFrame): DataFrame dengan rekomendasi
+        recommendations_df (pd.DataFrame): DataFrame with recommendations
         
     Returns:
-        dict: Dictionary dengan stats
+        dict: Dictionary with stats
     """
     if recommendations_df is None or len(recommendations_df) == 0:
         return None
@@ -179,43 +179,43 @@ def print_app_info():
 
 
 def create_example_queries():
-    """Buat list contoh query yang bagus"""
+    """Create list of good example queries"""
     return [
         {
             "query": "dry skin moisturizer",
-            "label": "Untuk Kulit Kering",
-            "description": "Perawatan untuk kulit kering dan dehidrasi"
+            "label": "For Dry Skin",
+            "description": "Care for dry and dehydrated skin"
         },
         {
             "query": "oily skin acne prone",
-            "label": "Untuk Kulit Berminyak & Berjerawat",
-            "description": "Perawatan untuk kulit berminyak dengan jerawat"
+            "label": "For Oily & Acne-Prone Skin",
+            "description": "Care for oily skin with acne"
         },
         {
             "query": "skin brightening anti dark spots",
-            "label": "Untuk Kulit Kusam",
-            "description": "Produk pencerah dan penghilang noda hitam"
+            "label": "For Dull Skin",
+            "description": "Brightening products and dark spot removers"
         },
         {
             "query": "sensitive skin gentle cleanser",
-            "label": "Untuk Kulit Sensitif",
-            "description": "Produk lembut untuk kulit sensitif"
+            "label": "For Sensitive Skin",
+            "description": "Gentle products for sensitive skin"
         },
         {
             "query": "anti aging wrinkles fine lines",
-            "label": "Untuk Anti-Aging",
-            "description": "Produk untuk mengurangi kerutan dan garis halus"
+            "label": "For Anti-Aging",
+            "description": "Products to reduce wrinkles and fine lines"
         }
     ]
 
 
 def export_recommendations_to_csv(recommendations_df, filename="recommendations.csv"):
     """
-    Export recommendations ke CSV file untuk disimpan
+    Export recommendations to CSV file for saving
     
     Args:
-        recommendations_df (pd.DataFrame): DataFrame dengan rekomendasi
-        filename (str): Nama file output
+        recommendations_df (pd.DataFrame): DataFrame with recommendations
+        filename (str): Output file name
         
     Returns:
         bytes: CSV file content
@@ -224,23 +224,23 @@ def export_recommendations_to_csv(recommendations_df, filename="recommendations.
     return csv_content
 
 
-# String templates untuk error dan success messages
+# String templates for error and success messages
 ERROR_MESSAGES = {
-    'empty_input': '❌ Mohon masukkan deskripsi kebutuhan kulit Anda!',
-    'short_input': '❌ Deskripsi terlalu singkat. Minimal 3 karakter.',
-    'long_input': '❌ Deskripsi terlalu panjang. Maksimal 500 karakter.',
-    'model_error': '❌ Terjadi error saat memproses. Silakan coba lagi.',
-    'no_results': '❌ Tidak ada rekomendasi yang ditemukan.'
+    'empty_input': '❌ Please enter your skin care needs description!',
+    'short_input': '❌ Description too short. Minimum 3 characters.',
+    'long_input': '❌ Description too long. Maximum 500 characters.',
+    'model_error': '❌ An error occurred while processing. Please try again.',
+    'no_results': '❌ No recommendations found.'
 }
 
 SUCCESS_MESSAGES = {
-    'recommendations_found': '✅ Rekomendasi berhasil dibuat!',
-    'data_loaded': '✅ Data berhasil dimuat!',
-    'model_ready': '✅ Model siap digunakan!'
+    'recommendations_found': '✅ Recommendations created successfully!',
+    'data_loaded': '✅ Data loaded successfully!',
+    'model_ready': '✅ Model ready to use!'
 }
 
 INFO_MESSAGES = {
-    'processing': '⏳ Menganalisis kebutuhan Anda...',
-    'loading': '🔄 Sedang memproses...',
-    'example_search': '💡 Mencoba pencarian contoh...'
+    'processing': '⏳ Analyzing your needs...',
+    'loading': '🔄 Processing...',
+    'example_search': '💡 Trying example search...'
 }

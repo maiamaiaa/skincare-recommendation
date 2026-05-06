@@ -1,6 +1,6 @@
 """
-Test script untuk verify Skincare Recommendation System
-Jalankan dengan: python test_setup.py
+Test script to verify Skincare Recommendation System
+Run with: python test_setup.py
 """
 
 import sys

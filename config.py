@@ -1,6 +1,6 @@
 """
-Configuration file untuk Skincare Recommendation App
-Berisi semua konstanta dan konfigurasi yang dapat disesuaikan
+"""Configuration file for Skincare Recommendation App
+Contains all constants and customizable configurations
 """
 
 # ============================================================================
@@ -8,8 +8,8 @@ Berisi semua konstanta dan konfigurasi yang dapat disesuaikan
 # ============================================================================
 
 APP_TITLE = "✨ Skincare Recommender"
-APP_SUBTITLE = "Turunkan skincare impian Anda dengan AI"
-APP_DESCRIPTION = "Sistem rekomendasi produk skincare berbasis NLP dengan TF-IDF dan Cosine Similarity"
+APP_SUBTITLE = "Find your dream skincare with AI"
+APP_DESCRIPTION = "Skincare product recommendation system based on NLP with TF-IDF and Cosine Similarity"
 
 # ============================================================================
 # MODEL CONFIGURATION
@@ -18,11 +18,11 @@ APP_DESCRIPTION = "Sistem rekomendasi produk skincare berbasis NLP dengan TF-IDF
 # TF-IDF Settings
 TFIDF_STOP_WORDS = 'english'
 TFIDF_MAX_FEATURES = 5000
-TFIDF_NGRAM_RANGE = (1, 2)  # Unigram dan Bigram
+TFIDF_NGRAM_RANGE = (1, 2)  # Unigram and Bigram
 
 # Model Cache
-USE_DEMO_DATA = True  # Set ke False jika menggunakan data asli
-DATA_PATH = None  # Path ke folder data CSV (set jika tidak pakai demo)
+USE_DEMO_DATA = True  # Set to False if using real data
+DATA_PATH = None  # Path to CSV data folder (set if not using demo)
 MODEL_CACHE_FILE = "model_cache.pkl"
 
 # ============================================================================
@@ -37,9 +37,9 @@ MIN_INPUT_LENGTH = 3
 MAX_INPUT_LENGTH = 500
 
 # Placeholder text
-INPUT_PLACEHOLDER = """Contoh: kulit berminyak, berjerawat, butuh skincare untuk mencerahkan
-Atau: dry sensitive skin, anti-aging, hydrating
-Atau: acne prone, oily T-zone, needs cleanser"""
+INPUT_PLACEHOLDER = """Example: oily skin, acne-prone, needs brightening
+Or: dry sensitive skin, anti-aging, hydrating
+Or: acne prone, oily T-zone, needs cleanser"""
 
 # ============================================================================
 # STYLING & COLORS
@@ -85,18 +85,18 @@ EMOJI_ICONS = {
 # SIMILARITY SCORE THRESHOLDS
 # ============================================================================
 
-# Untuk menentukan emoji dan pesan berdasarkan similarity score
+# To determine emoji and message based on similarity score
 SIMILARITY_THRESHOLDS = {
-    'excellent': 0.85,    # Sangat cocok
-    'good': 0.70,         # Cocok
-    'fair': 0.50,         # Cukup cocok
+    'excellent': 0.85,    # Very suitable
+    'good': 0.70,         # Suitable
+    'fair': 0.50,         # Fairly suitable
 }
 
 SIMILARITY_LABELS = {
-    'excellent': ('🟢', 'Sangat cocok untuk kebutuhan Anda!'),
-    'good': ('🟡', 'Cocok untuk kebutuhan Anda'),
-    'fair': ('🟠', 'Cukup cocok dengan kebutuhan Anda'),
-    'poor': ('🔴', 'Mungkin cocok dengan kebutuhan Anda'),
+    'excellent': ('🟢', 'Perfect match for your needs!'),
+    'good': ('🟡', 'Great match for your needs'),
+    'fair': ('🟠', 'Fairly suitable for your needs'),
+    'poor': ('🔴', 'May suit your needs'),
 }
 
 # ============================================================================
@@ -119,17 +119,17 @@ EXAMPLE_QUERIES = [
     {
         'display': '🔎 For Dry Skin',
         'query': 'dry skin moisturizer',
-        'description': 'Untuk kulit kering'
+        'description': 'For dry skin'
     },
     {
         'display': '🔎 For Oily Skin',
         'query': 'oily skin acne prone',
-        'description': 'Untuk kulit berminyak & berjerawat'
+        'description': 'For oily & acne-prone skin'
     },
     {
         'display': '🔎 For Brightening',
         'query': 'skin brightening dark spots',
-        'description': 'Untuk kulit kusam'
+        'description': 'For dull skin'
     }
 ]
 
@@ -138,14 +138,14 @@ EXAMPLE_QUERIES = [
 # ============================================================================
 
 MESSAGES = {
-    'empty_input': '❌ Mohon masukkan deskripsi kebutuhan kulit Anda!',
-    'short_input': f'❌ Deskripsi terlalu singkat. Minimal {MIN_INPUT_LENGTH} karakter.',
-    'long_input': f'❌ Deskripsi terlalu panjang. Maksimal {MAX_INPUT_LENGTH} karakter.',
-    'model_error': '❌ Terjadi error saat memproses. Silakan coba lagi.',
-    'no_results': '❌ Tidak ada rekomendasi yang ditemukan.',
-    'recommendations_found': '✅ Rekomendasi berhasil dibuat!',
-    'data_loaded': '✅ Data berhasil dimuat!',
-    'processing': '⏳ Menganalisis kebutuhan Anda...',
+    'empty_input': '❌ Please enter your skin care needs!',
+    'short_input': f'❌ Description too short. Minimum {MIN_INPUT_LENGTH} characters.',
+    'long_input': f'❌ Description too long. Maximum {MAX_INPUT_LENGTH} characters.',
+    'model_error': '❌ An error occurred while processing. Please try again.',
+    'no_results': '❌ No recommendations found.',
+    'recommendations_found': '✅ Recommendations created successfully!',
+    'data_loaded': '✅ Data loaded successfully!',
+    'processing': '⏳ Analyzing your needs...',
 }
 
 # ============================================================================

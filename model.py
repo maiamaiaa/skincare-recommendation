@@ -1,6 +1,6 @@
 """
-Model module untuk Skincare Recommendation System
-Berisi fungsi-fungsi untuk preprocessing, loading model, dan mendapatkan rekomendasi
+Model module for Skincare Recommendation System
+Contains functions for preprocessing, loading model, and getting recommendations
 """
 
 import pandas as pd
@@ -14,13 +14,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 def preprocess_text(text: str) -> str:
     """
-    Preprocessing teks input dari user
+    Preprocess user input text
     
     Args:
-        text (str): Teks raw dari user
+        text (str): Raw text from user
         
     Returns:
-        str: Teks yang sudah diprocessing
+        str: Processed text
     """
     text = text.lower().strip()
     return text
@@ -28,11 +28,11 @@ def preprocess_text(text: str) -> str:
 
 def load_or_create_model(data_path: str = None, use_demo: bool = False):
     """
-    Load model yang sudah tersimpan atau membuat model baru dari data
+    Load saved model or create new model from data
     
     Args:
-        data_path (str): Path ke folder data
-        use_demo (bool): Jika True, gunakan demo data dengan produk dummy
+        data_path (str): Path to data folder
+        use_demo (bool): If True, use demo data with dummy products
         
     Returns:
         tuple: (tfidf_matrix, df_grouped, tfidf_vectorizer)
@@ -40,7 +40,7 @@ def load_or_create_model(data_path: str = None, use_demo: bool = False):
     
     model_cache = Path("model_cache.pkl")
     
-    # Jika ada cache model yang tersimpan, load dari sana
+    # If model cache exists, load from there
     if model_cache.exists() and not use_demo:
         try:
             with open(model_cache, 'rb') as f:
@@ -50,28 +50,28 @@ def load_or_create_model(data_path: str = None, use_demo: bool = False):
             pass
     
     if use_demo:
-        # Menggunakan demo data untuk testing
+        # Use demo data for testing
         df_grouped = create_demo_data()
     else:
-        # Load dari CSV files jika data_path tersedia
+        # Load from CSV files if data_path is available
         if data_path and os.path.exists(data_path):
             df_grouped = load_data_from_csv(data_path)
         else:
-            # Fallback ke demo data
-            print("⚠️ Data path tidak ditemukan, menggunakan demo data...")
+            # Fallback to demo data
+            print("⚠️ Data path not found, using demo data...")
             df_grouped = create_demo_data()
     
-    # Buat TF-IDF Vectorizer
+    # Create TF-IDF Vectorizer
     tfidf = TfidfVectorizer(
         stop_words='english',
         max_features=5000,
         ngram_range=(1, 2)
     )
     
-    # Fit dan transform
+    # Fit and transform
     tfidf_matrix = tfidf.fit_transform(df_grouped["review_text"])
     
-    # Simpan ke cache
+    # Save to cache
     if not use_demo:
         try:
             cache_data = {
@@ -89,13 +89,13 @@ def load_or_create_model(data_path: str = None, use_demo: bool = False):
 
 def load_data_from_csv(data_path: str):
     """
-    Load data dari CSV files seperti di notebook original
+    Load data from CSV files like in the original notebook
     
     Args:
-        data_path (str): Path ke folder data
+        data_path (str): Path to data folder
         
     Returns:
-        pd.DataFrame: Data yang sudah di-preprocess dan digroup
+        pd.DataFrame: Preprocessed and grouped data
     """
     files = [
         "reviews_0-250_masked.csv",
@@ -139,10 +139,10 @@ def load_data_from_csv(data_path: str):
 
 def create_demo_data():
     """
-    Buat data demo untuk testing aplikasi
+    Create demo data for testing the application
     
     Returns:
-        pd.DataFrame: DataFrame dengan demo produk dan review
+        pd.DataFrame: DataFrame with demo products and reviews
     """
     demo_data = {
         "product_name": [
@@ -176,17 +176,17 @@ def create_demo_data():
 
 def get_recommendations(user_input: str, tfidf_matrix, df_grouped, tfidf_vectorizer, top_n: int = 5):
     """
-    Dapatkan rekomendasi produk berdasarkan input user
+    Get product recommendations based on user input
     
     Args:
-        user_input (str): Input teks dari user
-        tfidf_matrix: TF-IDF matrix yang sudah di-fit
-        df_grouped (pd.DataFrame): Data produk yang sudah digroup
+        user_input (str): Text input from user
+        tfidf_matrix: TF-IDF matrix that's already fitted
+        df_grouped (pd.DataFrame): Grouped product data
         tfidf_vectorizer: TF-IDF vectorizer
-        top_n (int): Jumlah rekomendasi yang ingin ditampilkan
+        top_n (int): Number of recommendations to display
         
     Returns:
-        pd.DataFrame: DataFrame berisi rekomendasi produk dengan similarity score
+        pd.DataFrame: DataFrame containing product recommendations with similarity scores
     """
     
     if not user_input.strip():
@@ -195,21 +195,21 @@ def get_recommendations(user_input: str, tfidf_matrix, df_grouped, tfidf_vectori
     # Preprocess input
     processed_input = preprocess_text(user_input)
     
-    # Transform input user
+    # Transform user input
     user_vec = tfidf_vectorizer.transform([processed_input])
     
-    # Hitung cosine similarity
+    # Calculate cosine similarity
     sim_scores = cosine_similarity(user_vec, tfidf_matrix).flatten()
     sim_scores = list(enumerate(sim_scores))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     
-    # Ambil top N
+    # Get top N
     top_scores = sim_scores[:top_n]
     
     product_indices = [i[0] for i in top_scores]
     similarity_scores = [i[1] for i in top_scores]
     
-    # Buat hasil dataframe
+    # Create result dataframe
     hasil = df_grouped.iloc[product_indices][["product_name"]].copy()
     hasil["similarity_score"] = similarity_scores
     hasil = hasil.reset_index(drop=True)
@@ -219,18 +219,18 @@ def get_recommendations(user_input: str, tfidf_matrix, df_grouped, tfidf_vectori
 
 def get_product_details(product_name: str, df_grouped: pd.DataFrame) -> str:
     """
-    Dapatkan detail produk berdasarkan nama
+    Get product details by name
     
     Args:
-        product_name (str): Nama produk
-        df_grouped (pd.DataFrame): Data produk
+        product_name (str): Product name
+        df_grouped (pd.DataFrame): Product data
         
     Returns:
-        str: Detail produk (review text)
+        str: Product details (review text)
     """
     product = df_grouped[df_grouped["product_name"] == product_name]
     if len(product) > 0:
         review_text = product["review_text"].values[0]
-        # Ambil summary dari review (first 150 characters)
+        # Get summary from review (first 150 characters)
         return review_text[:150] + "..." if len(review_text) > 150 else review_text
     return "No details available"
