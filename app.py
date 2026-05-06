@@ -81,6 +81,49 @@ cute_css = """
         border-color: #FFB6D9;
     }
     
+    /* Text area improvements */
+    .stTextArea {
+        padding: 1rem;
+    }
+    
+    .stTextArea label {
+        color: #BB5D8C !important;
+        font-weight: 700 !important;
+        font-size: 1.05rem !important;
+    }
+    
+    .stTextArea textarea {
+        color: #333333 !important;
+        background-color: #FFFACD !important;
+        border: 2px solid #FFE6F0 !important;
+        border-radius: 12px !important;
+        font-size: 1rem !important;
+        padding: 12px !important;
+    }
+    
+    .stTextArea textarea:focus {
+        border-color: #FFB6D9 !important;
+        box-shadow: 0 0 10px rgba(255, 182, 217, 0.3) !important;
+    }
+    
+    .stTextArea textarea::placeholder {
+        color: #999999 !important;
+        opacity: 0.8;
+    }
+    
+    /* Streamlit label styling */
+    [data-testid="stLabel"] label {
+        color: #BB5D8C !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Column and container text */
+    [data-testid="column"] p,
+    [data-testid="column"] span,
+    [data-testid="column"] label {
+        color: #333333 !important;
+    }
+    
     /* ===== BUTTON STYLING ===== */
     .stButton > button {
         background: linear-gradient(135deg, #FFB6D9 0%, #DDA0DD 100%) !important;
@@ -103,6 +146,18 @@ cute_css = """
     
     .stButton > button:active {
         transform: translateY(-1px) !important;
+    }
+    
+    /* Divider styling */
+    hr {
+        border: none;
+        border-top: 3px solid #FFB6D9 !important;
+        margin: 2rem 0 !important;
+        border-radius: 2px;
+    }
+    
+    [role="separator"] {
+        border-color: #FFB6D9 !important;
     }
     
     /* ===== PRODUCT CARDS ===== */
@@ -186,6 +241,22 @@ cute_css = """
         text-align: center;
     }
     
+    [data-testid="metric-container"] {
+        background: linear-gradient(135deg, #E6D9FF 0%, #FFE6F0 100%) !important;
+        border-radius: 15px !important;
+        padding: 1.5rem !important;
+        border: 2px solid rgba(255, 182, 217, 0.2) !important;
+    }
+    
+    [data-testid="metric-container"] p {
+        color: #333333 !important;
+        font-weight: 600 !important;
+    }
+    
+    [data-testid="metric-container"] [data-testid^="stMetric"] {
+        color: #BB5D8C !important;
+    }
+    
     /* ===== ANIMATIONS ===== */
     @keyframes float-in {
         from {
@@ -208,11 +279,76 @@ cute_css = """
     }
     
     /* ===== TEXT COLORS ===== */
-    h1, h2, h3 {
+    h1, h2, h3, h4, h5, h6 {
         color: #BB5D8C !important;
     }
     
-    /* ===== EXPANDER ===== */
+    /* Text area styling */
+    .stTextArea textarea {
+        color: #333333 !important;
+        font-size: 1rem !important;
+    }
+    
+    .stTextArea textarea::placeholder {
+        color: #999999 !important;
+    }
+    
+    /* Input label styling */
+    .stTextArea label {
+        color: #BB5D8C !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Metric styling */
+    .stMetric {
+        background: linear-gradient(135deg, #E6D9FF 0%, #FFE6F0 100%) !important;
+        border-radius: 15px !important;
+        padding: 1.5rem !important;
+    }
+    
+    .stMetricValue {
+        color: #BB5D8C !important;
+        font-weight: 700 !important;
+    }
+    
+    .stMetricLabel {
+        color: #666666 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* General text color */
+    p, span, div {
+        color: #333333 !important;
+    }
+    
+    /* Markdown text */
+    .stMarkdown {
+        color: #333333 !important;
+    }
+    
+    .stMarkdown h3 {
+        color: #BB5D8C !important;
+        font-weight: 700 !important;
+        margin-top: 1.5rem !important;
+    }
+    
+    /* Success/Error messages */
+    .stSuccess {
+        background: linear-gradient(135deg, #E8F8E8 0%, #D4F1D4 100%) !important;
+        color: #2d5a2d !important;
+    }
+    
+    .stError {
+        background: linear-gradient(135deg, #FFE6E6 0%, #FFD9D9 100%) !important;
+        color: #8B0000 !important;
+    }
+    
+    .stWarning {
+        background: linear-gradient(135deg, #FFF5E6 0%, #FFE8CC 100%) !important;
+        color: #664D00 !important;
+    }
+    
+    /* EXPANDER ===== */
     .streamlit-expanderHeader {
         background: linear-gradient(135deg, #FFE6F0 0%, #F0E6FF 100%) !important;
         border-radius: 12px !important;
