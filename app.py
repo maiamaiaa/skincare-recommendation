@@ -4,7 +4,6 @@ Aplikasi web modern untuk memberikan rekomendasi produk skincare berdasarkan inp
 """
 
 import streamlit as st
-from streamlit_extras.stylable_container import stylable_container
 import time
 from model import load_or_create_model, get_recommendations, get_product_details, preprocess_text
 
