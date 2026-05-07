@@ -1,317 +1,326 @@
-# 🧴 Skincare Recommendation System - Streamlit App
+# 💖 Skincare Beauty Finder ✨
 
-Aplikasi web modern berbasis NLP untuk memberikan rekomendasi produk skincare berdasarkan kebutuhan dan masalah kulit Anda.
+A cute and modern skincare product recommendation system powered by NLP (Natural Language Processing) using TF-IDF and Cosine Similarity. Built with Streamlit for an interactive web experience.
 
-![Skincare Recommender](https://img.shields.io/badge/Built%20with-Streamlit-red) ![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![ML](https://img.shields.io/badge/ML-TF%2DIDF-green)
-
----
-
-## 📋 Daftar Isi
-
-- [Fitur Utama](#fitur-utama)
-- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
-- [Instalasi](#instalasi)
-- [Cara Menggunakan](#cara-menggunakan)
-- [Struktur File](#struktur-file)
-- [Pengaturan Lanjutan](#pengaturan-lanjutan)
-- [Troubleshooting](#troubleshooting)
+🌐 **Live Demo:** [Skincare Beauty Finder on Streamlit Cloud](https://share.streamlit.io/maiamaiaa/skincare-recommendation/main/app.py)
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Features
 
-### 1. **UI/UX Modern**
-- 🎨 Desain gradient yang menarik dan profesional
-- 📱 Layout responsif dengan Streamlit columns
-- 🎭 Animasi smooth dan transisi yang elegan
-- 🌈 Custom CSS untuk styling yang unik
-
-### 2. **Input yang User-Friendly**
-- 📝 Text area dengan placeholder contoh
-- 🔍 Quick example buttons untuk pencarian cepat
-- ✅ Validasi input kosong dengan pesan yang jelas
-
-### 3. **Rekomendasi Produk**
-- 🎯 Similarity score dalam persentase
-- 📊 Visual progress bar untuk setiap produk
-- 📄 Deskripsi produk ringkas dari data
-- 🏆 Ranking produk berdasarkan kecocokan
-
-### 4. **Performance**
-- ⚡ Model caching untuk kecepatan optimal
-- 💾 Model cache simpan di disk setelah diload
-- ⏳ Loading spinner untuk feedback visual
-
-### 5. **Demo Data**
-- 📦 10 produk skincare sampel dengan review
-- 🤖 Siap digunakan tanpa setup data tambahan
+- 🤖 **AI-Powered Recommendations**: Uses TF-IDF vectorization and cosine similarity to find matching skincare products
+- 💖 **Cute & Feminine UI**: Soft pastel aesthetic with pink, lilac, and cream colors
+- 🌍 **100% English Interface**: Fully localized in English
+- 📱 **Responsive Design**: Works beautifully on desktop and mobile devices
+- ⚡ **Fast Processing**: Instant recommendations with cached model
+- 💾 **Demo Data Included**: Ready-to-use sample skincare products
+- 🎨 **Beautiful Animations**: Smooth transitions and hover effects
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🚀 Quick Start
 
-| Komponen | Teknologi | Fungsi |
-|----------|-----------|--------|
-| **Framework Web** | Streamlit | UI interaktif |
-| **Data Processing** | Pandas, NumPy | Manipulasi data |
-| **ML Model** | Scikit-learn | TF-IDF, Cosine Similarity |
-| **Styling** | Custom CSS | UI/UX modern |
-| **Caching** | Pickle | Model persistence |
+### Prerequisites
+- Python 3.8+
+- pip (Python package manager)
 
----
+### Installation
 
-## 📦 Instalasi
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/maiamaiaa/skincare-recommendation.git
+   cd skincare-recommendation
+   ```
 
-### Prasyarat
-- Python 3.8 atau lebih tinggi
-- pip atau conda
+2. **Create a virtual environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-### Step 1: Clone atau Download Project
-```bash
-cd /path/to/skincare_recommendation
-```
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Step 2: Buat Virtual Environment (Recommended)
+4. **Run the application**
+   ```bash
+   streamlit run app.py
+   ```
 
-**Menggunakan venv:**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-**Menggunakan conda:**
-```bash
-conda create -n skincare-app python=3.10
-conda activate skincare-app
-```
-
-### Step 3: Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+5. **Open in browser**
+   - Navigate to `http://localhost:8501`
+   - Start exploring skincare recommendations!
 
 ---
 
-## 🚀 Cara Menggunakan
-
-### Jalankan Aplikasi
-```bash
-streamlit run app.py
-```
-
-Aplikasi akan membuka di browser default Anda di `http://localhost:8501`
-
-### Cara Kerja
-
-1. **Input Kebutuhan Kulit**
-   - Ketikkan deskripsi kebutuhan kulit Anda (contoh: "kulit berminyak, pori besar, butuh cleanser")
-   - Atau klik salah satu contoh pencarian yang tersedia
-
-2. **Dapatkan Rekomendasi**
-   - Klik tombol "🚀 Rekomendasikan"
-   - Aplikasi akan menganalisis input Anda
-   - Loading spinner akan muncul selama proses
-
-3. **Lihat Hasil**
-   - Produk ditampilkan dalam card yang menarik
-   - Setiap produk menunjukkan:
-     - Ranking/nomor urut
-     - Nama produk
-     - Similarity score (persentase kecocokan)
-     - Visual progress bar
-     - Deskripsi singkat dari review
-
----
-
-## 📂 Struktur File
+## 📁 Project Structure
 
 ```
-skincare_recommendation/
+skincare-recommendation/
 │
-├── app.py                          # Main Streamlit application
-├── model.py                        # Model logic dan utility functions
-├── requirements.txt                # Python dependencies
-├── README.md                       # Documentation (file ini)
+├── app.py                    # Main Streamlit application with cute UI
+├── model.py                  # ML model with TF-IDF and cosine similarity
+├── config.py                 # Configuration settings and constants
+├── utils.py                  # Utility functions and helpers
+├── test_setup.py             # Setup verification script
 │
-├── NLP_2026 (1).ipynb             # Original Jupyter notebook
-├── model_cache.pkl                # Generated cache file (otomatis dibuat)
+├── requirements.txt          # Python dependencies
+├── .gitignore               # Git ignore file
+├── .streamlit/config.toml    # Streamlit configuration
 │
-└── [optional] data/
-    ├── reviews_0-250_masked.csv
-    ├── reviews_250-500_masked.csv
-    ├── reviews_500-750_masked.csv
-    ├── reviews_750-1250_masked.csv
-    ├── reviews_1250-end_masked.csv
-    └── product_info_skincare.csv
+└── README.md                # This file
 ```
 
 ---
 
-## ⚙️ Pengaturan Lanjutan
+## 🎯 How It Works
 
-### Menggunakan Data Asli (Bukan Demo)
+### 1. **Text Input**
+   - Users describe their skin concerns and needs
+   - Example: "oily skin, acne-prone, needs brightening"
 
-Jika Anda ingin menggunakan dataset asli dari Google Drive atau file lokal:
-
-**Edit file `app.py`** di bagian `load_model_cache()`:
-
-```python
-@st.cache_resource
-def load_model_cache():
-    # Ganti use_demo=True dengan use_demo=False
-    # dan sediakan data_path ke folder dengan CSV files
-    return load_or_create_model(
-        data_path="/path/to/your/data/folder",  # Edit path ini
-        use_demo=False  # Ubah ke False
-    )
-```
-
-Struktur folder data harus mengandung:
-- `reviews_0-250_masked.csv`
-- `reviews_250-500_masked.csv`
-- `reviews_500-750_masked.csv`
-- `reviews_750-1250_masked.csv`
-- `reviews_1250-end_masked.csv`
-- `product_info_skincare.csv`
-
-### Menyesuaikan Parameter TF-IDF
-
-Edit file `model.py` dalam fungsi `load_or_create_model()`:
-
-```python
-tfidf = TfidfVectorizer(
-    stop_words='english',
-    max_features=5000,        # Tingkatkan untuk lebih banyak features
-    ngram_range=(1, 2)        # Ubah untuk n-grams yang berbeda
-)
-```
-
-### Mengubah Jumlah Rekomendasi
-
-Di file `app.py`, ubah parameter `top_n`:
-
-```python
-recommendations = get_recommendations(
-    user_input=user_input,
-    tfidf_matrix=tfidf_matrix,
-    df_grouped=df_grouped,
-    tfidf_vectorizer=tfidf_vectorizer,
-    top_n=5  # Ubah angka ini (default: 5)
-)
-```
-
-### Menyesuaikan Styling
-
-Edit section **CUSTOM CSS** di `app.py` untuk mengubah:
-- Warna gradien: ubah nilai hex color (#667eea, #764ba2)
-- Font size: ubah nilai rem/px
-- Border radius: ubah efek rounded corners
-- Animations: modify @keyframes
-
----
-
-## 📊 Cara Kerja Model
-
-### 1. **Data Preprocessing**
-- Menghubungkan data reviews dengan product info
-- Lowercase semua teks
-- Hapus duplikasi
-- Group by product_name untuk gabung review per produk
-
-### 2. **Feature Extraction (TF-IDF)**
-- Convert teks menjadi vector numeric
-- Max 5000 features dari vocabulary
-- Menggunakan unigram dan bigram
+### 2. **TF-IDF Processing**
+   - User input is converted to TF-IDF vectors
+   - Maximum 5000 text features with unigram & bigram
 
 ### 3. **Similarity Matching**
-- Transform user input ke TF-IDF vector
-- Hitung cosine similarity dengan semua produk
-- Ranking berdasarkan similarity score tertinggi
+   - Cosine similarity calculates match scores (0-1)
+   - Top 5 products ranked by relevance
 
-### 4. **Result Display**
-- Return top-5 produk dengan similarity score
-- Tampilkan dengan visual yang menarik
+### 4. **Results Display**
+   - Products shown with:
+     - Match percentage (🎯)
+     - Product name
+     - Description from reviews
+     - Visual similarity progress bar
 
 ---
 
-## 🔧 Troubleshooting
+## 🛠️ Dependencies
 
-### **Masalah: "Module not found"**
+| Package | Version | Purpose |
+|---------|---------|---------|
+| streamlit | >=1.28.0 | Web framework |
+| pandas | >=2.0.0 | Data manipulation |
+| numpy | >=1.24.0 | Numerical computing |
+| scikit-learn | >=1.3.0 | TF-IDF & similarity |
+
+---
+
+## 🎨 UI Design
+
+### Color Palette
+- **Primary Pink**: `#FFB6D9` - Main action elements
+- **Soft Lilac**: `#E6D9FF` - Backgrounds & containers
+- **Cream Background**: `#FFF8F5` - Main page background
+- **Accent Peach**: `#FFDAB9` - Hover states
+- **Dark Pink**: `#BB5D8C` - Text & headers
+
+### Features
+- Gradient backgrounds with soft shadows
+- Rounded corners and smooth animations
+- Emoji-based visual indicators
+- Responsive card-based layout
+- Cute pastel aesthetic throughout
+
+---
+
+## 💡 Usage Example
+
+1. **Enter your skin needs**: 
+   ```
+   "My skin is dry, sensitive, and I get redness. I need a gentle moisturizer."
+   ```
+
+2. **Click "✨ Find My Skincare ✨"**
+   - The AI analyzes your input
+   - Returns top 5 matching products
+
+3. **Explore results**:
+   - View match percentage for each product
+   - Read product descriptions
+   - Use example searches for inspiration
+
+---
+
+## 🚀 Deployment
+
+### Deploy to Streamlit Cloud (Free)
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Deploy to Streamlit Cloud"
+   git push origin main
+   ```
+
+2. **Visit [Streamlit Share](https://share.streamlit.io/)**
+   - Click "New app"
+   - Select your GitHub repo
+   - Choose `main` branch and `app.py` as the main file
+   - Deploy!
+
+3. **Your app is live!** 🎉
+   - Access via: `https://share.streamlit.io/[username]/skincare-recommendation/main/app.py`
+
+---
+
+## 📊 Model Details
+
+### TF-IDF Configuration
+- **Stop words**: English
+- **Max features**: 5000
+- **N-gram range**: (1, 2) - Unigrams & Bigrams
+- **Similarity metric**: Cosine Similarity
+
+### Demo Data
+- 10 sample skincare products
+- Each with review text for analysis
+- Categories: moisturizers, cleansers, serums, masks, creams
+
+### Similarity Thresholds
+- **90%+ Match**: 🟢 Perfect match
+- **70-89% Match**: 🟡 Great match
+- **50-69% Match**: 🟠 Fairly suitable
+- **<50% Match**: 🔴 May suit your needs
+
+---
+
+## 🔧 Customization
+
+### Add Your Own Data
+
+Replace demo data in `model.py`:
+
+```python
+def create_demo_data():
+    demo_data = {
+        "product_name": ["Your Product 1", "Your Product 2"],
+        "review_text": ["Review text 1", "Review text 2"]
+    }
+    return pd.DataFrame(demo_data)
+```
+
+### Change Colors
+
+Edit color palette in `app.py`:
+
+```python
+# Pink tones
+PRIMARY_PINK = "#FFB6D9"
+DARK_PINK = "#BB5D8C"
+
+# Backgrounds
+BG_CREAM = "#FFF8F5"
+BG_SOFT_PINK = "#FFE6F0"
+```
+
+### Adjust Recommendations
+
+Edit defaults in `config.py`:
+
+```python
+DEFAULT_TOP_N = 5  # Number of products to show
+MIN_INPUT_LENGTH = 3  # Minimum character input
+MAX_INPUT_LENGTH = 500  # Maximum character input
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### "ModuleNotFoundError" when running app
 ```bash
-# Pastikan sudah di virtual environment yang benar
+# Make sure virtual environment is activated
+source venv/bin/activate
+
+# Reinstall dependencies
 pip install -r requirements.txt
 ```
 
-### **Masalah: Aplikasi berjalan lambat**
-- Hapus file `model_cache.pkl` untuk refresh cache
-- Periksa resources komputer (RAM, CPU)
-- Kurangi `max_features` di TF-IDF vectorizer
-
-### **Masalah: Tidak ada rekomendasi yang keluar**
-- Periksa input text (jangan terlalu singkat)
-- Coba input dengan keywords dari review produk
-- Verifikasi data produk ter-load dengan benar
-
-### **Masalah: Port 8501 sudah digunakan**
+### Port 8501 already in use
 ```bash
+# Use different port
 streamlit run app.py --server.port 8502
 ```
 
-### **Masalah: Import Error untuk streamlit-extras**
+### Model loading errors
 ```bash
-pip install --upgrade streamlit-extras
+# Clear cache and rebuild model
+rm model_cache.pkl
+streamlit run app.py
 ```
 
 ---
 
-## 🎥 Demo
+## 📝 Example Searches
 
-### Contoh Input dan Output
+Try these to see the recommendation system in action:
 
-**Input:** "kulit berminyak, pori besar, berjerawat"
+- ✨ **Skin Brightening**: "skin brightening, dark spots, dull skin"
+- 💧 **Dry Skin**: "dry skin, dehydrated, needs moisturizer"
+- 🧴 **Anti-Acne**: "acne-prone, oily skin, breakout"
+- 🌸 **Sensitive Skin**: "sensitive skin, redness, irritation"
+- 🎯 **Anti-Aging**: "wrinkles, fine lines, mature skin"
+
+---
+
+## 👨‍💻 Development
+
+### Run tests
+```bash
+python test_setup.py
 ```
-Output:
-1. Anti-Acne Face Wash (Similarity: 87%)
-2. Oil Control Toner (Similarity: 84%)
-3. Deep Pore Cleanser (Similarity: 79%)
-...
-```
+
+### Code structure
+- **app.py**: 400+ lines of Streamlit UI and styling
+- **model.py**: TF-IDF vectorization and recommendations
+- **config.py**: Centralized configuration
+- **utils.py**: Helper functions and utilities
 
 ---
 
-## 📝 Notes
+## 📄 License
 
-- **Demo Data**: Aplikasi menggunakan 10 produk dummy untuk demo. Untuk hasil lebih akurat, gunakan dataset asli Anda.
-- **Model Caching**: Model akan di-cache otomatis di disk setelah run pertama untuk performa lebih cepat.
-- **Multilingual**: Untuk saat ini, model optimal untuk English text. Bisa dikemangkan untuk Bahasa Indonesia.
+This project is open source and available for educational purposes.
 
 ---
 
-## 🚀 Pengembangan Lanjutan (Future Enhancements)
+## 🤝 Contributing
 
-- [ ] Tambah filter by product category
-- [ ] Tambah rating/reviews dari user
-- [ ] Integrasi dengan database real
-- [ ] Support multiple language
-- [ ] Machine learning retraining pipeline
-- [ ] User preferences saving
-- [ ] Admin dashboard
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest improvements
+- Submit pull requests
+- Add more skincare products
 
 ---
 
-## 📄 Lisensi
+## ✉️ Contact & Support
 
-Project ini dibuat untuk keperluan akademik/demo. Silakan gunakan dan modifikasi sesuai kebutuhan.
-
----
-
-## 👨‍💻 Support
-
-Jika ada pertanyaan atau issue:
-1. Baca section Troubleshooting di atas
-2. Periksa dokumentasi Streamlit: https://docs.streamlit.io
-3. Lihat dokumentasi Scikit-learn: https://scikit-learn.org
+For questions or issues, please visit the [GitHub repository](https://github.com/maiamaiaa/skincare-recommendation) and open an issue.
 
 ---
 
-**Happy skincare hunting!** ✨💅
+## 🌟 Future Enhancements
+
+- [ ] User ratings and feedback system
+- [ ] Save favorite products
+- [ ] Personalized recommendation history
+- [ ] Integration with real product databases
+- [ ] Mobile app version
+
+---
+
+## 🎁 Acknowledgments
+
+- Built with **Streamlit** for beautiful web apps
+- Powered by **scikit-learn** for ML algorithms
+- Designed with a love for skincare and cute aesthetic ✨
+
+---
+
+**Made with 💖 for skincare lovers everywhere!**
+
+Try it now: [https://share.streamlit.io/maiamaiaa/skincare-recommendation/main/app.py](https://share.streamlit.io/maiamaiaa/skincare-recommendation/main/app.py)
